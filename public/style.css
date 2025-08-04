@@ -1,0 +1,132 @@
+body {
+  background-image: url('img/pinterest-video16.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* TOPO NAVBAR */
+#Opções {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #1a2a40, #3f1f47);
+  height: auto;
+  padding: 0 40px;
+}
+
+#Opções img {
+  width: 60px;
+  height: auto;
+}
+
+/* LINKS DO TOPO */
+#LinksTopo {
+  display: flex;
+  gap: 50px;
+}
+
+#LinksTopo p {
+  margin: 0;
+  color: white;
+  font-family: 'VT323';
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* CONTEÚDO CENTRAL */
+
+#ConteudoPrincipal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    position: relative;
+}
+
+#Site_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+#Site_Container h1 {
+  color: white;
+  font-family: 'VT323';
+  font-size: xx-large;
+}
+
+#Site_Container h4 {
+  color: white;
+  font-family: 'VT323';
+  font-size: medium;
+}
+
+#Logo {
+  height: 200px;
+  width: 200px;
+}
+
+#Compra {
+  border: 10px solid white;
+  border-radius: 20px;
+  font-family: 'VT323';
+}
+
+
+#TelaLogin {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vh;
+    height: 40vh;
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 40px;
+    padding: 20px;
+    z-index: 10;
+}
+
+#Login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#Login h1 {
+    font-family: 'VT323';
+    font-size: 24px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+    #Saida {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    #Saida img {
+        width: 88px;
+        height: 88px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    #Saida img:hover {
+        transform: scale(1.1);
+    }
+
+    #TelaLogin img:not(#Saida img) {
+        height: 200px;
+        width: 200px;
+    }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MandaShop!</title>
+    <link rel="icon" href="img/MandaShopIcone.png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="Opções">
+        <img src="img/MandaShop.png" alt="icon">
+        <div id="LinksTopo">
+            <p id="Compradores">Top Compradores</p>
+            <p id="SobreNos">Sobre nós</p>
+            <p onclick="FazerLogin()">Login</p>
+        </div>
+    </div>
+    <div id="ConteudoPrincipal"> 
+        
+        <div id="Site_Container">
+            <h1>MandaShop</h1>
+            
+            <h4>O lugar onde pokémons se tornam tudo!</h4>
+            
+            <img src="img/MandaShopIcone.png" id="Logo">
+            
+            <button id="Compra" onclick="Comprar()">Faça sua compra aqui!</button>
+        </div>
+        
+        <div id="TelaLogin">     
+            <div id="Saida">
+                <img src="/home/heichur/Documentos/Projetosss/Manda-Shop/public/img/Exit.png" onclick="Fechar()">
+            </div>     
+            <div id="Login">
+                <h1>Faça o Login</h1>
+                <input type="text" id="Nickname" placeholder="Digite seu nick do Discord"> 
+                <img src="/home/heichur/Documentos/Projetosss/Manda-Shop/public/img/MandaShopIcone.png">
+                <button onclick="login()">Entrar</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+<script src="script.js"></script>
