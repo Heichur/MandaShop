@@ -13,12 +13,13 @@
             <p id="Compradores">Top Compradores</p>
             <p id="SobreNos">Sobre nós</p>
             <p onclick="FazerLogin()">Login</p>
+            <p onclick="FazerLoginAdm()">Adm</p>
         </div>
     </div>
     <div id="ConteudoPrincipal"> 
         
         <div id="Site_Container">
-            <h1>MandaShop</h1>
+            <h1 class="NomeManda">MandaShop</h1>
             
             <h4>O lugar onde pokémons se tornam tudo!</h4>
             
@@ -29,12 +30,24 @@
         
         <div id="TelaLogin">     
             <div id="Saida">
-                <img src="/home/heichur/Documentos/Projetosss/Manda-Shop/public/img/Exit.png" onclick="Fechar()">
+                <img src="img/Exit.png" onclick="Fechar()">
             </div>     
             <div id="Login">
                 <h1>Faça o Login</h1>
-                <input type="text" id="Nickname" placeholder="Digite seu nick do Discord"> 
-                <img src="/home/heichur/Documentos/Projetosss/Manda-Shop/public/img/MandaShopIcone.png">
+                <input type="text" id="Nickname" placeholder="Digite seu nick do Minecraft"> 
+                <input type="text" id="Discord" placeholder="Digite seu nick do Discord"> 
+         
+                
+                <img src="img/MandaShopIcone.png">
+                <button onclick="login()">Entrar</button>
+            
+            </div>
+            <div id="LoginAdm"> 
+
+                <h1>Login adm</h1>
+                <input type="text" id="Nickname" placeholder="Nick"> 
+                <input type="password" id="Senha" placeholder="Digite a senha de admin"> 
+                <img src="img/MandaShopIcone.png">
                 <button onclick="login()">Entrar</button>
             </div>
         </div>

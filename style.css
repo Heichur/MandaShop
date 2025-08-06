@@ -1,12 +1,14 @@
 body {
-  background-image: url('img/pinterest-video16.gif');
+  background-image: url('img/background.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
   margin: 0;
 }
-
+p {
+  color: white;
+}
 /* TOPO NAVBAR */
 #Opções {
   display: flex;
@@ -43,28 +45,32 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: calc(100vh - 80px); 
     position: relative;
+    flex-direction: column; 
 }
+
+
 
 #Site_Container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 60vh;
+  gap: 10px; 
+  text-align: center;
 }
 
 #Site_Container h1 {
   color: white;
   font-family: 'VT323';
-  font-size: xx-large;
+  font-size: 55px;
 }
 
 #Site_Container h4 {
   color: white;
   font-family: 'VT323';
-  font-size: medium;
+  font-size: 35px;
 }
 
 #Logo {
@@ -88,7 +94,7 @@ body {
     width: 40vh;
     height: 40vh;
     background-color: black;
-    border: 2px solid black;
+    border: 2px solid yellow;
     border-radius: 40px;
     padding: 20px;
     z-index: 10;
@@ -103,6 +109,21 @@ body {
 }
 
 #Login h1 {
+    font-family: 'VT323';
+    font-size: 24px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#LoginAdm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#LoginAdm h1 {
     font-family: 'VT323';
     font-size: 24px;
     color: white;
