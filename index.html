@@ -1,59 +1,78 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+
 <html>
 <head>
-    <title>MandaShop!</title>
-    <link rel="icon" href="img/MandaShopIcone.png" type="image/png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
-    <link rel="stylesheet" href="style.css">
+  <title>MandaShop!</title>
+  <link rel="icon" href="img/MandaShopIcone.png" type="image/png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="Opções">
-        <img src="img/MandaShop.png" alt="icon">
-        <div id="LinksTopo">
-            <p id="Compradores">Top Compradores</p>
-            <p id="SobreNos">Sobre nós</p>
-            <p onclick="FazerLogin()">Login</p>
-            <p onclick="FazerLoginAdm()">Adm</p>
-        </div>
+  <div id="Opções">
+    <img src="img/MandaShop.png" alt="icon">
+    <div id="LinksTopo">
+      <p id="Compradores" onclick="MostrarTopCompradores()">Top Compradores</p>
+      <p id="SobreNos" onclick="SobreNos()">Sobre nós</p>
+      <p onclick="FazerLogin()">Login</p>
+      <p onclick="FazerLoginAdm()">Adm</p>
     </div>
-    <div id="ConteudoPrincipal"> 
-        
-        <div id="Site_Container">
-            <h1 class="NomeManda">MandaShop</h1>
-            
-            <h4>O lugar onde pokémons se tornam tudo!</h4>
-            
-            <img src="img/MandaShopIcone.png" id="Logo">
-            
-            <button id="Compra" onclick="Comprar()">Faça sua compra aqui!</button>
-        </div>
-        
-        <div id="TelaLogin">     
-            <div id="Saida">
-                <img src="img/Exit.png" onclick="Fechar()">
-            </div>     
-            <div id="Login">
-                <h1>Faça o Login</h1>
-                <input type="text" id="Nickname" placeholder="Digite seu nick do Minecraft"> 
-                <input type="text" id="Discord" placeholder="Digite seu nick do Discord"> 
-         
-                
-                <img src="img/MandaShopIcone.png">
-                <button onclick="login()">Entrar</button>
-            
-            </div>
-            <div id="LoginAdm"> 
+  </div>
 
-                <h1>Login adm</h1>
-                <input type="text" id="Nickname" placeholder="Nick"> 
-                <input type="password" id="Senha" placeholder="Digite a senha de admin"> 
-                <img src="img/MandaShopIcone.png">
-                <button onclick="login()">Entrar</button>
-            </div>
-        </div>
+  <div id="ConteudoPrincipal">
+    <div id="Site_Container">
+      <h1 class="NomeManda">MandaShop</h1>
+      <h4>O lugar onde pokémons se tornam tudo!</h4>
+      <img src="img/MandaShopIcone.png" id="Logo">
+      <button id="Compra" onclick="Comprar()">Faça sua compra aqui!</button>
     </div>
 
+    <div id="TelaLogin">
+      <div id="Saida">
+        <img src="img/Exit.png" onclick="Fechar()">
+      </div>
+      <div id="Login">
+        <h1>Faça o Login</h1>
+        <input type="text" id="Nickname" placeholder="Digite seu nick do Minecraft">
+        <input type="text" id="Discord" placeholder="Digite seu nick do Discord">
+        <img src="img/MandaShopIcone.png">
+        <button onclick="login()">Entrar</button>
+      </div>
+      <div id="LoginAdm">
+        <h1>Login adm</h1>
+        <input type="text" id="NicknameAdm" placeholder="Nick">
+        <input type="password" id="SenhaAdm" placeholder="Digite a senha de admin">
+        <img src="img/MandaShopIcone.png">
+        <button onclick="loginAdm()">Entrar</button>
+      </div>
+    </div>
 
-</body>
-</html>
+    <section id="Comprando">
+      <h1>Escolha o pokémon!</h1>
+      <input type="search" id="NomeDosPoke" placeholder="Nome do Pokemon">
+      <input type="search" id="EggMoves" placeholder="Egg move do pokemon escolhido">
+      <input type="search" id="Nature" placeholder="Nature do pokemon">
+      <input type="search" id="Habilidade" placeholder="Habilidade do Pokemon">
+      <input type="checkbox" id="HiddenHabilidade"><p>Ha?</p>
+      <input type="text" id="GeneroDoPoke" placeholder="Macho ou Femea?">
+      <input type="text" id="Ivs" placeholder="Ivs desejados">
+      <input type="text" id="CastradoOuBreedavel" placeholder="Castrado ou Breedavel?">
+      <button onclick="EnviarPedido()">Enviar Pedido</button>
+      <button id="VoltarCompra" onclick="VoltarParaSite()">Voltar</button>
+    </section>
+
+
+    <section id="TopCompradores">
+      <div id="SaidaCompradores">
+        <img src="img/Exit.png" onclick="FecharTopCompradores()">
+      </div>
+      <h1>🏆 Top Compradores do Mês</h1>
+      <div id="MesAtual"></div>
+      <div id="ListaCompradores">
+        <p>Carregando dados dos compradores...</p>
+      </div>
+      <button onclick="FecharTopCompradores()">Voltar</button>
+    </section>
+  </div>
+
+  </html>
 <script src="script.js"></script>
