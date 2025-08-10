@@ -47,16 +47,10 @@
 
       console.log("Nick:", Nick, "Discord:", NickDiscord);
 
-      fetch("https://canary.discord.com/api/webhooks/1403553452503863317/QqtmUO7N96qJeI_9eLCqoGuE-HTLWbJapwd7nCQC5l0xkSC9TE5KVeMp-NhUlS7Ds7vI", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          content: `🎮 **Login Player**\n👤 Nick: ${Nick}\n💬 Discord: ${NickDiscord}`
-        })
-      });
+    
     }
 
-    function Sobrenos() {
+    function SobreNos() {
       alert("Em construção....")
     }
    
@@ -206,7 +200,8 @@
     function EnviarPedido() {
       const pokeNome = nomeInput.value.trim();
       const nomeUsuario = document.getElementById("Nickname").value.trim();
-      
+      const NickDiscord = document.getElementById("Discord").value.trim();
+
       if (!pokeNome) {
         alert("Por favor, digite o nome de um Pokémon.");
         return;
@@ -214,6 +209,7 @@
 
       const resumo = 
 `Nome do Jogador: ${nomeUsuario}
+Nome no Discord: ${NickDiscord}
 Pokémon Desejado: ${pokeNome}
 -----------------------------
 Castrado ou Breedável: ${document.getElementById("CastradoOuBreedavel").value || "Não informado"}
