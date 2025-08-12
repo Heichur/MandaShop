@@ -222,8 +222,23 @@ function EnviarPedido() {
   }
 
   // Preço IVs
-  const ivs = document.getElementById("Ivs").value.trim().toUpperCase();
+  const ivsInput = document.getElementById("Ivs").value.trim().toUpperCase();
+  const ivZeradosStr = document.getElementById("IVZerado")?.value.trim() || ""; // campo que você usa para informar
+  const qtdIvZerados = ivZeradosStr ? ivZeradosStr.split(",").length : 0; // conta quantos foram informados
+
   let precoIvs = 0;
+  let ivs = ivsInput;
+
+  // Ajuste pelas regras de IV zerado
+  if (ivsInput === "F4" && qtdIvZerados === 1) {
+    ivs = "F5";
+  } else if (ivsInput === "F4" && qtdIvZerados >= 2) {
+    ivs = "F6";
+  } else if (ivsInput === "F5" && qtdIvZerados >= 1) {
+    ivs = "F6";
+  }
+
+  // Valores finais
   switch(ivs) {
     case 'F6': precoIvs = 90000; break;
     case 'F5': precoIvs = 70000; break;
@@ -236,10 +251,8 @@ function EnviarPedido() {
   const castradoOuBreedavel = document.getElementById("CastradoOuBreedavel").value.trim().toLowerCase();
   const precoBreedavel = castradoOuBreedavel === "breedavel" ? 10000 : 0;
 
-
   const hiddenHabilidade = document.getElementById("HiddenHabilidade").checked;
   const precoHidden = hiddenHabilidade ? 15000 : 0;
-
 
   const eggMovesStr = document.getElementById("EggMoves").value.trim();
   let precoEggMoves = 0;
@@ -247,7 +260,6 @@ function EnviarPedido() {
     const eggMovesArray = eggMovesStr.split(",").map(em => em.trim()).filter(em => em.length > 0);
     precoEggMoves = eggMovesArray.length * 10000;
   }
-
   // Soma total
   const precoTotal = precoIvs + precoBreedavel + precoHidden + precoEggMoves;
 
@@ -261,6 +273,7 @@ Natureza: ${natureInput.value || "Não selecionada"}
 Habilidades: ${habInput.value || "Não informado"}
 Sexo (♂/♀): ${generoInput.value || "Não informado"}
 IVs Desejados: ${ivs || "Não informado"}
+IVs Zerados: ${ivZeradosStr || "Nenhum"}
 Egg Moves: ${eggMovesStr || "Não informado"}
 Hidden Habilidade: ${hiddenHabilidade ? "Sim" : "Não"}
 -----------------------------
