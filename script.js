@@ -1,6 +1,4 @@
-
-    var SenhaAdm = "197"; 
-
+ var SenhaAdm = "197"; 
 
     function FazerLogin() {
       document.getElementById("LoginAdm").style.display = "none";
@@ -44,12 +42,17 @@
     function login() {
       const Nick = document.getElementById("Nickname").value.trim();
       const NickDiscord = document.getElementById("Discord").value.trim();
+ 
+        if (Nick === "" || NickDiscord === "") {
+    alert("Por favor, preencha os dois campos!");
+    return; 
 
+  }
       console.log("Nick:", Nick, "Discord:", NickDiscord);
-
-    
-    }
-
+      alert("Seja Bem vindo " + Nick +"!")  
+        document.getElementById("TelaLogin").style.display = "none";
+  document.getElementById("Site_Container").style.display = "flex";
+}
     function SobreNos() {
       alert("Em construção....")
     }
@@ -173,6 +176,7 @@
 
   
     function Comprar() {
+      alert("Caso você vá colocar mais de um egg move na hora da compra, por favor, separar ele por virgúla. Exemplo: Parting shot, yawn")
       const loginNick = document.getElementById("Nickname")?.value.trim();
       if (!loginNick) {
         alert("⚠️ Você precisa estar logado para comprar. Por favor, faça login antes.");
@@ -196,32 +200,79 @@
       natureInput.value = "";
     }
 
-  
-    function EnviarPedido() {
-      const pokeNome = nomeInput.value.trim();
-      const nomeUsuario = document.getElementById("Nickname").value.trim();
-      const NickDiscord = document.getElementById("Discord").value.trim();
+  function Preços(){
+    const tabela = document.getElementById("Tabela")
+    tabela.style.display = "flex"
+    siteContainer.style.display = "none"
+  }
 
-      if (!pokeNome) {
-        alert("Por favor, digite o nome de um Pokémon.");
-        return;
-      }
+  function FecharTabela() {
+  document.getElementById("Tabela").style.display = "none";
+  document.getElementById("Site_Container").style.display = "flex";
+}
 
-      const resumo = 
+function EnviarPedido() {
+  const pokeNome = nomeInput.value.trim();
+  const nomeUsuario = document.getElementById("Nickname").value.trim();
+  const NickDiscord = document.getElementById("Discord").value.trim();
+
+  if (!pokeNome) {
+    alert("Por favor, digite o nome de um Pokémon.");
+    return;
+  }
+
+  // Preço IVs
+  const ivs = document.getElementById("Ivs").value.trim().toUpperCase();
+  let precoIvs = 0;
+  switch(ivs) {
+    case 'F6': precoIvs = 90000; break;
+    case 'F5': precoIvs = 70000; break;
+    case 'F4': precoIvs = 40000; break;
+    case 'F3': precoIvs = 30000; break;
+    case 'F2': precoIvs = 25000; break;
+    default: precoIvs = 0; break;
+  }
+
+  const castradoOuBreedavel = document.getElementById("CastradoOuBreedavel").value.trim().toLowerCase();
+  const precoBreedavel = castradoOuBreedavel === "breedavel" ? 10000 : 0;
+
+
+  const hiddenHabilidade = document.getElementById("HiddenHabilidade").checked;
+  const precoHidden = hiddenHabilidade ? 15000 : 0;
+
+
+  const eggMovesStr = document.getElementById("EggMoves").value.trim();
+  let precoEggMoves = 0;
+  if (eggMovesStr) {
+    const eggMovesArray = eggMovesStr.split(",").map(em => em.trim()).filter(em => em.length > 0);
+    precoEggMoves = eggMovesArray.length * 10000;
+  }
+
+  // Soma total
+  const precoTotal = precoIvs + precoBreedavel + precoHidden + precoEggMoves;
+
+  const resumo = 
 `Nome do Jogador: ${nomeUsuario}
 Nome no Discord: ${NickDiscord}
 Pokémon Desejado: ${pokeNome}
 -----------------------------
-Castrado ou Breedável: ${document.getElementById("CastradoOuBreedavel").value || "Não informado"}
+Castrado ou Breedável: ${castradoOuBreedavel || "Não informado"}
 Natureza: ${natureInput.value || "Não selecionada"}
 Habilidades: ${habInput.value || "Não informado"}
 Sexo (♂/♀): ${generoInput.value || "Não informado"}
+IVs Desejados: ${ivs || "Não informado"}
+Egg Moves: ${eggMovesStr || "Não informado"}
+Hidden Habilidade: ${hiddenHabilidade ? "Sim" : "Não"}
 -----------------------------
-IVs Desejados: ${document.getElementById("Ivs").value || "Não informado"}
-Egg Moves: ${eggInput.value || "Não informado"}
+Preço total estimado: ${precoTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+`;
+const PedidoFeito = 
+`
+Seu pokémon já está em preparação, assim que ficar pronto, te notificamos para retirar na loja, Agradecemos a preferência!
+Preço total: ${precoTotal.toLocaleString('pt-BR')}k
 `;
 
-      alert(resumo);
+      alert(PedidoFeito);
 
 
       registrarPedido(nomeUsuario);
