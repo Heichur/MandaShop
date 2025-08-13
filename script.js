@@ -92,12 +92,7 @@ function obterNomeMesAtual() {
 
 function registrarPedido(nomeUsuario) {
   const chaveMes = obterChaveMesAtual();
-  // Usar variável em memória em vez de localStorage
-  if (!window.compradores) {
-    window.compradores = {};
-  }
-  
-  let compradores = window.compradores[chaveMes] || {};
+  let compradores = JSON.parse(localStorage.getItem(chaveMes) || '{}');
   
   if (compradores[nomeUsuario]) {
     compradores[nomeUsuario]++;
@@ -105,7 +100,7 @@ function registrarPedido(nomeUsuario) {
     compradores[nomeUsuario] = 1;
   }
   
-  window.compradores[chaveMes] = compradores;
+  localStorage.setItem(chaveMes, JSON.stringify(compradores));
 }
 
 function MostrarTopCompradores() {
@@ -122,7 +117,7 @@ function MostrarTopCompradores() {
 
 function carregarTopCompradores() {
   const chaveMes = obterChaveMesAtual();
-  const compradores = (window.compradores && window.compradores[chaveMes]) || {};
+  const compradores = JSON.parse(localStorage.getItem(chaveMes) || '{}');
   
   const listaCompradores = document.getElementById("ListaCompradores");
   
@@ -201,7 +196,7 @@ function FecharTabela() {
   document.getElementById("Site_Container").style.display = "flex";
 }
 
-// ✅ FUNÇÃO CORRIGIDA PARA IVs ZERADOS
+
 function EnviarPedido() {
   const pokeNome = nomeInput.value.trim();
   const nomeUsuario = document.getElementById("Nickname").value.trim();
@@ -212,7 +207,7 @@ function EnviarPedido() {
     return;
   }
 
-  // Preço IVs - LÓGICA CORRIGIDA
+
   const ivsInput = document.getElementById("Ivs").value.trim().toUpperCase();
   const ivZeradosStr = document.getElementById("IVZerado")?.value.trim() || "";
   
@@ -254,7 +249,7 @@ function EnviarPedido() {
   }
 
   const castradoOuBreedavel = document.getElementById("CastradoOuBreedavel").value.trim().toLowerCase();
-  const precoBreedavel = castradoOuBreedavel === "breedavel" ? 10000 : 0;
+  const precoBreedavel = (castradoOuBreedavel === "breedavel" || castradoOuBreedavel === "breedável") ? 10000 : 0;
 
   const hiddenHabilidade = document.getElementById("HiddenHabilidade").checked;
   const precoHidden = hiddenHabilidade ? 15000 : 0;
@@ -270,8 +265,6 @@ function EnviarPedido() {
 
   // Soma total
   const precoTotal = precoIvs + precoBreedavel + precoHidden + precoEggMoves;
-
-
 
   const resumo = 
 `Nome do Jogador: ${nomeUsuario}
@@ -295,10 +288,9 @@ Preço total estimado: ${precoTotal.toLocaleString('pt-BR')}k`;
 
 Seu pokémon já está em preparação! Assim que ficar pronto, te notificamos para retirar na loja.
 
-${mensagemAjuste ? `${mensagemAjuste}\n` : ""}
  Preço total: ${precoTotal.toLocaleString('pt-BR')}k
 
-Agradecemos a preferência!`;
+Agradecemos a preferência! 🎮`;
 
   alert(PedidoFeito);
 
