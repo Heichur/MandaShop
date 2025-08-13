@@ -224,7 +224,7 @@ function EnviarPedido() {
   let ivs = ivsInput;
   let ivAjustado = false;
 
-  // ✅ REGRAS CORRIGIDAS DE AJUSTE DE IVs
+
   if (ivsInput === "F4") {
     if (qtdIvZerados >= 2) {
       ivs = "F6";
@@ -276,7 +276,7 @@ Natureza: ${natureInput.value || "Não selecionada"}
 Habilidades: ${habInput.value || "Não informado"}
 Sexo (♂/♀): ${generoInput.value || "Não informado"}
 IVs Solicitados: ${ivsInput || "Não informado"}
-IVs Finais: ${ivs}${mensagemAjuste}
+IVs Finais: ${ivs}
 IVs Zerados: ${ivZeradosStr || "Nenhum"}
 Egg Moves: ${eggMovesStr || "Não informado"}
 Hidden Habilidade: ${hiddenHabilidade ? "Sim" : "Não"}
