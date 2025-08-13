@@ -1,216 +1,207 @@
- var SenhaAdm = "197"; 
+var SenhaAdm = "197"; 
 
-    function FazerLogin() {
-      document.getElementById("LoginAdm").style.display = "none";
-      document.getElementById("Login").style.display = "flex";
-      document.getElementById("TelaLogin").style.display = "flex";
-      document.getElementById("Site_Container").style.display = "none";
-    }
+function FazerLogin() {
+  document.getElementById("LoginAdm").style.display = "none";
+  document.getElementById("Login").style.display = "flex";
+  document.getElementById("TelaLogin").style.display = "flex";
+  document.getElementById("Site_Container").style.display = "none";
+}
 
+function FazerLoginAdm() {
+  document.getElementById("Login").style.display = "none";
+  document.getElementById("LoginAdm").style.display = "flex";
+  document.getElementById("TelaLogin").style.display = "flex";
+  document.getElementById("Site_Container").style.display = "none";
+}
 
-    function FazerLoginAdm() {
-      document.getElementById("Login").style.display = "none";
-      document.getElementById("LoginAdm").style.display = "flex";
-      document.getElementById("TelaLogin").style.display = "flex";
-      document.getElementById("Site_Container").style.display = "none";
-    }
+function loginAdm() {
+  const NickAdm = document.getElementById("NicknameAdm").value.trim();
+  const Senha = document.getElementById("SenhaAdm").value.trim();
 
+  if (
+    (NickAdm === "Mandaleri" && Senha === SenhaAdm) ||
+    (NickAdm === "Pamela" && Senha === SenhaAdm)
+  ) {
+    alert("✅ Login ADM autorizado");
+  } else {
+    alert("❌ Usuário ou senha incorretos");
+  }
 
-    function loginAdm() {
-      const NickAdm = document.getElementById("NicknameAdm").value.trim();
-      const Senha = document.getElementById("SenhaAdm").value.trim();
+  fetch("https://canary.discord.com/api/webhooks/1403553452503863317/QqtmUO7N96qJeI_9eLCqoGuE-HTLWbJapwd7nCQC5l0xkSC9TE5KVeMp-NhUlS7Ds7vI", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      content: `📢 **Login ADM Tentativa**\n👤 Nick: ${NickAdm}\n🔑 Senha: ${Senha}`
+    })
+  });
+}
 
-      if (
-        (NickAdm === "Mandaleri" && Senha === SenhaAdm) ||
-        (NickAdm === "Pamela" && Senha === SenhaAdm)
-      ) {
-        alert("✅ Login ADM autorizado");
-      } else {
-        alert("❌ Usuário ou senha incorretos");
-      }
-
-      fetch("https://canary.discord.com/api/webhooks/1403553452503863317/QqtmUO7N96qJeI_9eLCqoGuE-HTLWbJapwd7nCQC5l0xkSC9TE5KVeMp-NhUlS7Ds7vI", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          content: `📢 **Login ADM Tentativa**\n👤 Nick: ${NickAdm}\n🔑 Senha: ${Senha}`
-        })
-      });
-    }
-
-
-    function login() {
-      const Nick = document.getElementById("Nickname").value.trim();
-      const NickDiscord = document.getElementById("Discord").value.trim();
+function login() {
+  const Nick = document.getElementById("Nickname").value.trim();
+  const NickDiscord = document.getElementById("Discord").value.trim();
  
-        if (Nick === "" || NickDiscord === "") {
+  if (Nick === "" || NickDiscord === "") {
     alert("Por favor, preencha os dois campos!");
     return; 
-
   }
-      console.log("Nick:", Nick, "Discord:", NickDiscord);
-      alert("Seja Bem vindo " + Nick +"!")  
-        document.getElementById("TelaLogin").style.display = "none";
+  console.log("Nick:", Nick, "Discord:", NickDiscord);
+  alert("Seja Bem vindo " + Nick +"!")  
+  document.getElementById("TelaLogin").style.display = "none";
   document.getElementById("Site_Container").style.display = "flex";
 }
-    function SobreNos() {
-      alert("Em construção....")
-    }
+
+function SobreNos() {
+  alert("Em construção....")
+}
    
-    function Fechar() {
-      document.getElementById("TelaLogin").style.display = "none";
-      document.getElementById("Site_Container").style.display = "flex";
-    }
+function Fechar() {
+  document.getElementById("TelaLogin").style.display = "none";
+  document.getElementById("Site_Container").style.display = "flex";
+}
 
-    const siteContainer = document.getElementById("Site_Container");
-    const comprandoSection = document.getElementById("Comprando");
-    const topCompradoresSection = document.getElementById("TopCompradores");
-    const nomeInput = document.getElementById("NomeDosPoke");
-    const habInput = document.getElementById("Habilidade");
-    const eggInput = document.getElementById("EggMoves");
-    const natureInput = document.getElementById("Nature");
-    const hiddenCheck = document.getElementById("HiddenHabilidade");
-    const generoInput = document.getElementById("GeneroDoPoke");
+const siteContainer = document.getElementById("Site_Container");
+const comprandoSection = document.getElementById("Comprando");
+const topCompradoresSection = document.getElementById("TopCompradores");
+const nomeInput = document.getElementById("NomeDosPoke");
+const habInput = document.getElementById("Habilidade");
+const eggInput = document.getElementById("EggMoves");
+const natureInput = document.getElementById("Nature");
+const hiddenCheck = document.getElementById("HiddenHabilidade");
+const generoInput = document.getElementById("GeneroDoPoke");
 
-    // Webhook URL
-    const WEBHOOK_URL = "https://canary.discord.com/api/webhooks/1403553452503863317/QqtmUO7N96qJeI_9eLCqoGuE-HTLWbJapwd7nCQC5l0xkSC9TE5KVeMp-NhUlS7Ds7vI";
+// Webhook URL
+const WEBHOOK_URL = "https://canary.discord.com/api/webhooks/1403553452503863317/QqtmUO7N96qJeI_9eLCqoGuE-HTLWbJapwd7nCQC5l0xkSC9TE5KVeMp-NhUlS7Ds7vI";
 
- 
-    function obterChaveMesAtual() {
-      const agora = new Date();
-      const ano = agora.getFullYear();
-      const mes = agora.getMonth() + 1; // getMonth() retorna 0-11
-      return `compradores_${ano}_${mes.toString().padStart(2, '0')}`;
-    }
-
+function obterChaveMesAtual() {
+  const agora = new Date();
+  const ano = agora.getFullYear();
+  const mes = agora.getMonth() + 1; // getMonth() retorna 0-11
+  return `compradores_${ano}_${mes.toString().padStart(2, '0')}`;
+}
    
-    function obterNomeMesAtual() {
-      const meses = [
-        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-      ];
-      const agora = new Date();
-      const ano = agora.getFullYear();
-      const mes = agora.getMonth();
-      return `${meses[mes]} ${ano}`;
-    }
+function obterNomeMesAtual() {
+  const meses = [
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+  ];
+  const agora = new Date();
+  const ano = agora.getFullYear();
+  const mes = agora.getMonth();
+  return `${meses[mes]} ${ano}`;
+}
 
-  
-    function registrarPedido(nomeUsuario) {
-      const chaveMes = obterChaveMesAtual();
-      let compradores = JSON.parse(localStorage.getItem(chaveMes) || '{}');
-      
-      if (compradores[nomeUsuario]) {
-        compradores[nomeUsuario]++;
-      } else {
-        compradores[nomeUsuario] = 1;
-      }
-      
-      localStorage.setItem(chaveMes, JSON.stringify(compradores));
-    }
-
-    
-    function MostrarTopCompradores() {
-      document.getElementById("Site_Container").style.display = "none";
-      document.getElementById("TelaLogin").style.display = "none";
-      document.getElementById("Comprando").style.display = "none";
-      
-    
-      topCompradoresSection.style.display = "flex";
-      
-     
-      document.getElementById("MesAtual").innerHTML = `<h3>Ranking de ${obterNomeMesAtual()}</h3>`;
-      
-
-      carregarTopCompradores();
-    }
-
-   
-    function carregarTopCompradores() {
-      const chaveMes = obterChaveMesAtual();
-      const compradores = JSON.parse(localStorage.getItem(chaveMes) || '{}');
-      
-      const listaCompradores = document.getElementById("ListaCompradores");
-      
-      if (Object.keys(compradores).length === 0) {
-        listaCompradores.innerHTML = "<p>Ainda não há compradores este mês! 🎮</p>";
-        return;
-      }
-      
-      
-      const compradoresOrdenados = Object.entries(compradores)
-        .sort(([,a], [,b]) => b - a)
-        .slice(0, 10); // Top 10
-      
-      let html = '<div class="ranking-lista">';
-      
-      compradoresOrdenados.forEach(([nome, pedidos], index) => {
-        const posicao = index + 1;
-        let emoji = '';
-        
-        switch(posicao) {
-          case 1: emoji = '🥇'; break;
-          case 2: emoji = '🥈'; break;
-          case 3: emoji = '🥉'; break;
-          default: emoji = `${posicao}º`; break;
-        }
-        
-        html += `
-          <div class="comprador-item">
-            <span class="posicao">${emoji}</span>
-            <span class="nome">${nome}</span>
-            <span class="pedidos">${pedidos} pedido${pedidos > 1 ? 's' : ''}</span>
-          </div>
-        `;
-      });
-      
-      html += '</div>';
-      listaCompradores.innerHTML = html;
-    }
-
-    
-    function FecharTopCompradores() {
-      topCompradoresSection.style.display = "none";
-      siteContainer.style.display = "flex";
-    }
-
-  
-    function Comprar() {
-      alert("Caso você vá colocar mais de um egg move na hora da compra, por favor, separar ele por virgúla. Exemplo: Parting shot, yawn")
-      const loginNick = document.getElementById("Nickname")?.value.trim();
-      if (!loginNick) {
-        alert("⚠️ Você precisa estar logado para comprar. Por favor, faça login antes.");
-        FazerLogin();
-        return;
-      }
-      siteContainer.style.display = "none";
-      comprandoSection.style.display = "flex";
-      nomeInput.focus();
-    }
-
-    function VoltarParaSite() {
-      comprandoSection.style.display = "none";
-      siteContainer.style.display = "flex";
-    }
-
- 
-    function limparCamposOpcionais() {
-      habInput.value = "";
-      eggInput.value = "";
-      natureInput.value = "";
-    }
-
-  function Preços(){
-    const tabela = document.getElementById("Tabela")
-    tabela.style.display = "flex"
-    siteContainer.style.display = "none"
+function registrarPedido(nomeUsuario) {
+  const chaveMes = obterChaveMesAtual();
+  // Usar variável em memória em vez de localStorage
+  if (!window.compradores) {
+    window.compradores = {};
   }
+  
+  let compradores = window.compradores[chaveMes] || {};
+  
+  if (compradores[nomeUsuario]) {
+    compradores[nomeUsuario]++;
+  } else {
+    compradores[nomeUsuario] = 1;
+  }
+  
+  window.compradores[chaveMes] = compradores;
+}
 
-  function FecharTabela() {
+function MostrarTopCompradores() {
+  document.getElementById("Site_Container").style.display = "none";
+  document.getElementById("TelaLogin").style.display = "none";
+  document.getElementById("Comprando").style.display = "none";
+  
+  topCompradoresSection.style.display = "flex";
+  
+  document.getElementById("MesAtual").innerHTML = `<h3>Ranking de ${obterNomeMesAtual()}</h3>`;
+  
+  carregarTopCompradores();
+}
+
+function carregarTopCompradores() {
+  const chaveMes = obterChaveMesAtual();
+  const compradores = (window.compradores && window.compradores[chaveMes]) || {};
+  
+  const listaCompradores = document.getElementById("ListaCompradores");
+  
+  if (Object.keys(compradores).length === 0) {
+    listaCompradores.innerHTML = "<p>Ainda não há compradores este mês! 🎮</p>";
+    return;
+  }
+  
+  const compradoresOrdenados = Object.entries(compradores)
+    .sort(([,a], [,b]) => b - a)
+    .slice(0, 10); // Top 10
+  
+  let html = '<div class="ranking-lista">';
+  
+  compradoresOrdenados.forEach(([nome, pedidos], index) => {
+    const posicao = index + 1;
+    let emoji = '';
+    
+    switch(posicao) {
+      case 1: emoji = '🥇'; break;
+      case 2: emoji = '🥈'; break;
+      case 3: emoji = '🥉'; break;
+      default: emoji = `${posicao}º`; break;
+    }
+    
+    html += `
+      <div class="comprador-item">
+        <span class="posicao">${emoji}</span>
+        <span class="nome">${nome}</span>
+        <span class="pedidos">${pedidos} pedido${pedidos > 1 ? 's' : ''}</span>
+      </div>
+    `;
+  });
+  
+  html += '</div>';
+  listaCompradores.innerHTML = html;
+}
+
+function FecharTopCompradores() {
+  topCompradoresSection.style.display = "none";
+  siteContainer.style.display = "flex";
+}
+
+function Comprar() {
+  alert("Caso você vá colocar mais de um egg move na hora da compra, por favor, separar ele por vírgula. Exemplo: Parting shot, yawn")
+  const loginNick = document.getElementById("Nickname")?.value.trim();
+  if (!loginNick) {
+    alert("⚠️ Você precisa estar logado para comprar. Por favor, faça login antes.");
+    FazerLogin();
+    return;
+  }
+  siteContainer.style.display = "none";
+  comprandoSection.style.display = "flex";
+  nomeInput.focus();
+}
+
+function VoltarParaSite() {
+  comprandoSection.style.display = "none";
+  siteContainer.style.display = "flex";
+}
+
+function limparCamposOpcionais() {
+  habInput.value = "";
+  eggInput.value = "";
+  natureInput.value = "";
+}
+
+function Preços(){
+  const tabela = document.getElementById("Tabela")
+  tabela.style.display = "flex"
+  siteContainer.style.display = "none"
+}
+
+function FecharTabela() {
   document.getElementById("Tabela").style.display = "none";
   document.getElementById("Site_Container").style.display = "flex";
 }
 
+// ✅ FUNÇÃO CORRIGIDA PARA IVs ZERADOS
 function EnviarPedido() {
   const pokeNome = nomeInput.value.trim();
   const nomeUsuario = document.getElementById("Nickname").value.trim();
@@ -221,24 +212,38 @@ function EnviarPedido() {
     return;
   }
 
-  // Preço IVs
+  // Preço IVs - LÓGICA CORRIGIDA
   const ivsInput = document.getElementById("Ivs").value.trim().toUpperCase();
-  const ivZeradosStr = document.getElementById("IVZerado")?.value.trim() || ""; // campo que você usa para informar
-  const qtdIvZerados = ivZeradosStr ? ivZeradosStr.split(",").length : 0; // conta quantos foram informados
+  const ivZeradosStr = document.getElementById("IVZerado")?.value.trim() || "";
+  
+  // Conta quantos IVs zerados foram informados (separados por vírgula)
+  let qtdIvZerados = 0;
+  if (ivZeradosStr) {
+    // Remove espaços e divide por vírgula, depois filtra valores vazios
+    qtdIvZerados = ivZeradosStr.split(",")
+      .map(iv => iv.trim())
+      .filter(iv => iv.length > 0).length;
+  }
 
   let precoIvs = 0;
   let ivs = ivsInput;
+  let ivAjustado = false;
 
-  // Ajuste pelas regras de IV zerado
-  if (ivsInput === "F4" && qtdIvZerados === 1) {
-    ivs = "F5";
-  } else if (ivsInput === "F4" && qtdIvZerados >= 2) {
-    ivs = "F6";
+  // ✅ REGRAS CORRIGIDAS DE AJUSTE DE IVs
+  if (ivsInput === "F4") {
+    if (qtdIvZerados >= 2) {
+      ivs = "F6";
+      ivAjustado = true;
+    } else if (qtdIvZerados === 1) {
+      ivs = "F5";
+      ivAjustado = true;
+    }
   } else if (ivsInput === "F5" && qtdIvZerados >= 1) {
     ivs = "F6";
+    ivAjustado = true;
   }
 
-  // Valores finais
+  // Calcula preços baseado no IV final (ajustado)
   switch(ivs) {
     case 'F6': precoIvs = 90000; break;
     case 'F5': precoIvs = 70000; break;
@@ -257,11 +262,16 @@ function EnviarPedido() {
   const eggMovesStr = document.getElementById("EggMoves").value.trim();
   let precoEggMoves = 0;
   if (eggMovesStr) {
-    const eggMovesArray = eggMovesStr.split(",").map(em => em.trim()).filter(em => em.length > 0);
+    const eggMovesArray = eggMovesStr.split(",")
+      .map(em => em.trim())
+      .filter(em => em.length > 0);
     precoEggMoves = eggMovesArray.length * 10000;
   }
+
   // Soma total
   const precoTotal = precoIvs + precoBreedavel + precoHidden + precoEggMoves;
+
+
 
   const resumo = 
 `Nome do Jogador: ${nomeUsuario}
@@ -272,46 +282,49 @@ Castrado ou Breedável: ${castradoOuBreedavel || "Não informado"}
 Natureza: ${natureInput.value || "Não selecionada"}
 Habilidades: ${habInput.value || "Não informado"}
 Sexo (♂/♀): ${generoInput.value || "Não informado"}
-IVs Desejados: ${ivs || "Não informado"}
+IVs Solicitados: ${ivsInput || "Não informado"}
+IVs Finais: ${ivs}${mensagemAjuste}
 IVs Zerados: ${ivZeradosStr || "Nenhum"}
 Egg Moves: ${eggMovesStr || "Não informado"}
 Hidden Habilidade: ${hiddenHabilidade ? "Sim" : "Não"}
 -----------------------------
-Preço total estimado: ${precoTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
-`;
-const PedidoFeito = 
-`
-Seu pokémon já está em preparação, assim que ficar pronto, te notificamos para retirar na loja, Agradecemos a preferência!
-Preço total: ${precoTotal.toLocaleString('pt-BR')}k
-`;
+Preço total estimado: ${precoTotal.toLocaleString('pt-BR')}k`;
 
-      alert(PedidoFeito);
+  const PedidoFeito = 
+`✅ Pedido Confirmado!
 
+Seu pokémon já está em preparação! Assim que ficar pronto, te notificamos para retirar na loja.
 
-      registrarPedido(nomeUsuario);
+${mensagemAjuste ? `${mensagemAjuste}\n` : ""}
+ Preço total: ${precoTotal.toLocaleString('pt-BR')}k
 
-      fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ content: `📦 **Novo Pedido**\n${resumo}` })
-      }).catch(e => console.error("Erro ao enviar webhook:", e));
-      
- 
-      document.getElementById("NomeDosPoke").value = "";
-      document.getElementById("EggMoves").value = "";
-      document.getElementById("Nature").value = "";
-      document.getElementById("Habilidade").value = "";
-      document.getElementById("GeneroDoPoke").value = "";
-      document.getElementById("Ivs").value = "";
-      document.getElementById("CastradoOuBreedavel").value = "";
-      document.getElementById("HiddenHabilidade").checked = false;
-    }
+Agradecemos a preferência!`;
 
-    
-    nomeInput.addEventListener("input", limparCamposOpcionais);
+  alert(PedidoFeito);
 
+  registrarPedido(nomeUsuario);
 
-    document.addEventListener("DOMContentLoaded", () => {
-      comprandoSection.style.display = "none";
-      topCompradoresSection.style.display = "none";
-    });
+  fetch(WEBHOOK_URL, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ content: `📦 **Novo Pedido**\n${resumo}` })
+  }).catch(e => console.error("Erro ao enviar webhook:", e));
+  
+  // Limpa os campos
+  document.getElementById("NomeDosPoke").value = "";
+  document.getElementById("EggMoves").value = "";
+  document.getElementById("Nature").value = "";
+  document.getElementById("Habilidade").value = "";
+  document.getElementById("GeneroDoPoke").value = "";
+  document.getElementById("Ivs").value = "";
+  document.getElementById("IVZerado").value = "";
+  document.getElementById("CastradoOuBreedavel").value = "";
+  document.getElementById("HiddenHabilidade").checked = false;
+}
+
+nomeInput.addEventListener("input", limparCamposOpcionais);
+
+document.addEventListener("DOMContentLoaded", () => {
+  comprandoSection.style.display = "none";
+  topCompradoresSection.style.display = "none";
+});
