@@ -197,6 +197,17 @@ function FecharTabela() {
 }
 
 
+function contarIVsZeradosValidos(ivZeradosStr) {
+  if (!ivZeradosStr) return 0;
+  
+  return ivZeradosStr.split(",")
+    .map(iv => iv.trim().toLowerCase())
+    .filter(iv => {
+
+      return iv.length > 0 && !iv.startsWith('-');
+    }).length;
+}
+
 function EnviarPedido() {
   const pokeNome = nomeInput.value.trim();
   const nomeUsuario = document.getElementById("Nickname").value.trim();
@@ -207,23 +218,15 @@ function EnviarPedido() {
     return;
   }
 
-
   const ivsInput = document.getElementById("Ivs").value.trim().toUpperCase();
   const ivZeradosStr = document.getElementById("IVZerado")?.value.trim() || "";
   
-  // Conta quantos IVs zerados foram informados (separados por vírgula)
-  let qtdIvZerados = 0;
-  if (ivZeradosStr) {
-    // Remove espaços e divide por vírgula, depois filtra valores vazios
-    qtdIvZerados = ivZeradosStr.split(",")
-      .map(iv => iv.trim())
-      .filter(iv => iv.length > 0).length;
-  }
+  // Conta apenas IVs zerados que aumentam o preço (não começam com "-")
+  const qtdIvZerados = contarIVsZeradosValidos(ivZeradosStr);
 
   let precoIvs = 0;
   let ivs = ivsInput;
   let ivAjustado = false;
-
 
   if (ivsInput === "F4") {
     if (qtdIvZerados >= 2) {
@@ -238,7 +241,6 @@ function EnviarPedido() {
     ivAjustado = true;
   }
 
-  // Calcula preços baseado no IV final (ajustado)
   switch(ivs) {
     case 'F6': precoIvs = 90000; break;
     case 'F5': precoIvs = 70000; break;
@@ -276,7 +278,6 @@ Natureza: ${natureInput.value || "Não selecionada"}
 Habilidades: ${habInput.value || "Não informado"}
 Sexo (♂/♀): ${generoInput.value || "Não informado"}
 IVs Solicitados: ${ivsInput || "Não informado"}
-IVs Finais: ${ivs}
 IVs Zerados: ${ivZeradosStr || "Nenhum"}
 Egg Moves: ${eggMovesStr || "Não informado"}
 Hidden Habilidade: ${hiddenHabilidade ? "Sim" : "Não"}
@@ -290,7 +291,7 @@ Seu pokémon já está em preparação! Assim que ficar pronto, te notificamos p
 
  Preço total: ${precoTotal.toLocaleString('pt-BR')}k
 
-Agradecemos a preferência! 🎮`;
+Agradecemos a preferência!`;
 
   alert(PedidoFeito);
 

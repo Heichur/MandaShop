@@ -281,6 +281,16 @@ p {
   box-sizing: border-box;
 }
 
+/* Estilo específico para o campo IVZerado com placeholder menor */
+#IVZerado {
+  font-size: clamp(10px, 2vw, 12px) !important;
+}
+
+#IVZerado::placeholder {
+  font-size: clamp(10px, 2vw, 12px) !important;
+  color: #888;
+}
+
 #Comprando input:focus {
   outline: none;
   border-color: yellow;
@@ -556,6 +566,14 @@ p {
     font-size: 16px;
     margin: 10px 0;
   }
+
+  #IVZerado {
+    font-size: 5px !important;
+  }
+  
+  #IVZerado::placeholder {
+    font-size: 5px !important;
+  }
   
   #Comprando button {
     padding: 15px;
@@ -645,5 +663,14 @@ p {
   
   .pedidos {
     font-size: 12px;
+  }
+  
+
+  #IVZerado {
+    font-size: 5px !important;
+  }
+  
+  #IVZerado::placeholder {
+    font-size: 5px !important;
   }
 }
